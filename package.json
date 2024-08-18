@@ -1,0 +1,38 @@
+{
+  "name": "cut.io-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "@types/mongoose-sequence": "^3.0.11",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose-sequence": "^6.0.1",
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^22.2.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "mongoose": "^8.5.3",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "build": "npx tsc --build",
+    "run-build": "node .\\build\\server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cut.io"
+  ],
+  "author": "Adao Major",
+  "license": "MIT",
+  "description": "nodejs API for a link shotener platform"
+}
