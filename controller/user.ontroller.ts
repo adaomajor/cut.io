@@ -12,29 +12,35 @@ const options = {
 class userController{
     async login(req: Request, res: Response){
         const { email, password } = req.body
-        try{
-            const userExists = await User.findOne({ email }).select('+password')
-            if(userExists){
-                const isMatch =  userExists.compare(password)
-                if(!isMatch){ res.status(401).json({Error:"incorrect password!"}) }
-                else{
-                    const secret_key: string = process.env.SECRET_KEY || "adammajorcutio_secret_key"
-                    const authToken: string =  await jwt.sign({
-                         _id: userExists.id,
-                        username: userExists.username, 
-                        email: userExists.email, join_date: userExists.created
-                    }, secret_key ,{ expiresIn: '1h'})
+        if(email && password){
+            try{
+                const userExists = await User.findOne({ email }).select('+password')
+                if(userExists){
+                    const isMatch = await userExists.compare(password)
+                    if(!isMatch){ 
+                        res.status(401).json({Error:"incorrect password!"}) 
+                    }
+                    else{
+                        const secret_key: string = process.env.SECRET_KEY || "adammajorcutio_secret_key"
+                        const authToken: string =  await jwt.sign({
+                            _id: userExists.id,
+                            username: userExists.username, 
+                            email: userExists.email, join_date: userExists.created
+                        }, secret_key ,{ expiresIn: '1h'})
 
-                    const user = { _id: userExists.id, username: userExists.username, email: userExists.email, join_date: userExists.created, token: authToken}
-                    res.cookie('user_id', userExists.id, options)
-                    res.cookie('AUTH-TOKEN', authToken, options)
-                    res.json(user)
-                }
-            }else{ res.json({Error:"user not found with this email!"}).status(404)}
-        }catch{
-            res.status(500)
-        }finally{
-            res.end()
+                        const user = { _id: userExists.id, username: userExists.username, email: userExists.email, join_date: userExists.created, token: authToken}
+                        res.cookie('user_id', userExists.id, options)
+                        res.cookie('AUTH-TOKEN', authToken, options)
+                        res.json(user)
+                    }
+                }else{ res.json({Error:"user not found with this email!"}).status(404)}
+            }catch{
+                res.status(500)
+            }finally{
+                res.end()
+            }
+        }else{
+            res.json({Error:"empty fields!"}).status(400)
         }
     }
 
