@@ -8,7 +8,9 @@ _____
 	whoever@youare:$ git clone https://github.com/adaomajor/cut.io.git
 	whoever@youare:$ cd cut.io
 	whoever@youare:$ npm install
-	whoever@youare:$ npm run build && npm run dev
+	whoever@yourare:$ npm run dev
+		or 🙄
+	whoever@youare:$ npm run build && npm run run-build
 ```
 _____
 ### Let It Run... 😎
