@@ -18,7 +18,11 @@ mongoose.Promise = Promise
 
 mongoose.connect('mongodb://localhost:27017/cutio')
     .then(() => console.log("mongoDB is Ok"))
-    .catch(() => process.exit(1))
+    .catch(() => {
+        console.log("[x] Couldn't connect to MongoDB server")
+	    console.log("[x] Stopping HTTPServer...") 
+	    process.exit(1)
+    })
 
 
 
