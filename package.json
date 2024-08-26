@@ -26,7 +26,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "npx tsc --build",
-    "run-build": "node .\\build\\server",
+    "run-build": "node ./build/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
